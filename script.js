@@ -47,6 +47,35 @@ function toggleCard(card) {
     card.classList.toggle('active');
 }
 
+// Fixed Dragon Animations
+const fixedDragon = document.querySelector('.fixed-dragon');
+const animations = ['jumping', 'spinning', 'shaking'];
+let currentAnimationIndex = 0;
+
+function playDragonAnimation() {
+    if (!fixedDragon) return;
+    
+    // Remove all animation classes
+    animations.forEach(anim => fixedDragon.classList.remove(anim));
+    
+    // Add random animation
+    const randomAnimation = animations[Math.floor(Math.random() * animations.length)];
+    fixedDragon.classList.add(randomAnimation);
+    
+    // Remove animation class after it completes
+    setTimeout(() => {
+        fixedDragon.classList.remove(randomAnimation);
+    }, 1000);
+}
+
+// Play animation every 5 seconds
+setInterval(playDragonAnimation, 5000);
+
+// Click on dragon for instant animation
+if (fixedDragon) {
+    fixedDragon.parentElement.addEventListener('click', playDragonAnimation);
+}
+
 
 // Quiz Data
 const quizData = [

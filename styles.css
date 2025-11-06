@@ -284,6 +284,92 @@ body.dark-theme .dragon-image {
     }
 }
 
+@keyframes dragonWave {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-10px) rotate(-5deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+    75% {
+        transform: translateY(-10px) rotate(-5deg);
+    }
+}
+
+@keyframes dragonJump {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-40px) scale(1.1);
+    }
+}
+
+@keyframes dragonSpin {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(180deg) scale(1.2);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+@keyframes dragonShake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-10px) rotate(-5deg);
+    }
+    50% {
+        transform: translateX(10px) rotate(5deg);
+    }
+    75% {
+        transform: translateX(-10px) rotate(-5deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+    }
+    50% {
+        box-shadow: 0 8px 30px rgba(76, 175, 80, 0.6);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: rotate(10deg) scale(1.2);
+    }
+    25% {
+        transform: rotate(10deg) scale(1.3);
+    }
+    50% {
+        transform: rotate(10deg) scale(1.2);
+    }
+    75% {
+        transform: rotate(10deg) scale(1.25);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Tab Navigation */
 .tabs-navigation {
     display: flex;
@@ -304,26 +390,59 @@ body.dark-theme .dragon-image {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
     color: var(--text-secondary);
+    position: relative;
+    overflow: hidden;
+}
+
+.tab-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.tab-btn:hover::before {
+    left: 100%;
 }
 
 .tab-btn:hover {
     background-color: var(--bg-secondary);
+    transform: translateY(-5px) scale(1.05);
 }
 
 .tab-btn.active {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
-    box-shadow: var(--shadow);
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+    transform: translateY(-3px);
+    animation: pulse 2s ease-in-out infinite;
 }
 
 .tab-icon {
     font-size: 1.8rem;
+    transition: transform 0.3s ease;
+}
+
+.tab-btn:hover .tab-icon {
+    transform: rotate(10deg) scale(1.2);
+    animation: bounce 0.6s ease;
+}
+
+.tab-icon-img {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .tab-text {
@@ -342,7 +461,7 @@ body.dark-theme .dragon-image {
 
 .tab-pane {
     display: none;
-    animation: fadeIn 0.3s ease;
+    animation: slideInUp 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .tab-pane.active {
@@ -698,9 +817,19 @@ body.dark-theme .warning-item {
     display: flex;
     gap: 1rem;
     align-items: flex-start;
+    text-decoration: none;
+    color: inherit;
     padding: 1rem;
-    background-color: var(--card-bg);
-    border-radius: 8px;
+    border-radius: var(--border-radius);
+    background: var(--bg-secondary);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.tool-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+    background: var(--card-bg);
 }
 
 .tool-emoji {
@@ -716,6 +845,39 @@ body.dark-theme .warning-item {
 .tool-item p {
     font-size: 0.85rem;
     color: var(--text-secondary);
+}
+
+/* Fixed Dragon Helper */
+.fixed-dragon-helper {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.fixed-dragon-helper:hover {
+    transform: scale(1.1);
+}
+
+.fixed-dragon {
+    width: 100px;
+    height: 100px;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    animation: dragonWave 3s ease-in-out infinite;
+}
+
+.fixed-dragon.jumping {
+    animation: dragonJump 1s ease-in-out;
+}
+
+.fixed-dragon.spinning {
+    animation: dragonSpin 1s ease-in-out;
+}
+
+.fixed-dragon.shaking {
+    animation: dragonShake 0.5s ease-in-out;
 }
 
 /* Footer */
@@ -774,13 +936,35 @@ footer {
         font-size: 1rem;
     }
 
-    .dragon-svg {
-        width: 150px;
-        height: 150px;
+    .dragon-image {
+        width: 180px;
+        height: auto;
+    }
+    
+    .hero-right {
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
     }
 
     .tabs-navigation {
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        padding-bottom: 0.5rem;
+    }
+    
+    .tabs-navigation::-webkit-scrollbar {
+        height: 4px;
+    }
+    
+    .tabs-navigation::-webkit-scrollbar-track {
+        background: var(--bg-secondary);
+    }
+    
+    .tabs-navigation::-webkit-scrollbar-thumb {
+        background: var(--primary);
+        border-radius: 2px;
     }
 
     .tab-btn {
@@ -790,6 +974,11 @@ footer {
 
     .tab-icon {
         font-size: 1.5rem;
+    }
+    
+    .tab-icon-img {
+        width: 30px;
+        height: 30px;
     }
 
     .tab-text {
@@ -826,28 +1015,86 @@ footer {
 }
 
 @media (max-width: 480px) {
-    .hero {
-        padding: 40px 0;
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .hero-compact {
+        padding: 1.5rem 1rem;
+        gap: 1rem;
     }
 
-    .hero-text h1 {
+    .hero-left h1 {
         font-size: 1.5rem;
+        line-height: 1.3;
     }
 
-    .hero-buttons {
-        flex-direction: column;
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .dragon-image {
+        width: 150px;
     }
 
-    .btn {
-        width: 100%;
+    .theme-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
     }
-
-    section {
-        padding: 40px 0;
+    
+    .tab-btn {
+        min-width: 90px;
+        padding: 0.7rem 0.8rem;
+        font-size: 0.85rem;
     }
-
-    .quiz-content {
+    
+    .tab-icon {
+        font-size: 1.3rem;
+    }
+    
+    .tab-icon-img {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .tab-text {
+        font-size: 0.75rem;
+    }
+    
+    .tabs-content {
         padding: 1rem;
+    }
+    
+    .tab-pane h2 {
+        font-size: 1.3rem;
+    }
+    
+    .info-card,
+    .tip-card,
+    .resource-card {
+        padding: 1rem;
+    }
+    
+    .info-card h3,
+    .tip-card h3,
+    .resource-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    .warning-box,
+    .tool-item {
+        padding: 1rem;
+    }
+    
+    .quiz-option {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .footer {
+        padding: 1.5rem 0;
+        font-size: 0.85rem;
     }
 }
 
