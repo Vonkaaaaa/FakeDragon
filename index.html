@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фейкодракончик - Борьба з фейками</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <span class="dragon-emoji">🐲</span>
+                <span>Фейкодракончик</span>
+            </div>
+            
+            <!-- Theme Toggle Button -->
+            <div class="theme-toggle-wrapper">
+                <button class="theme-toggle" id="themeToggle" aria-label="Переключити тему">
+                    <div class="toggle-track">
+                        <div class="toggle-thumb">
+                            <span class="sun-icon">☀️</span>
+                            <span class="moon-icon">🌙</span>
+                        </div>
+                    </div>
+                </button>
+            </div>
+            
+            <button class="burger-menu" id="burgerMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Main Container with Tabs -->
+        <div class="main-container">
+            <div class="container">
+                <!-- Hero Section with Dragon -->
+                <div class="hero-compact">
+                    <div class="hero-left">
+                        <h1>Не перетворюйся на фейкодракончика!</h1>
+                        <p class="hero-subtitle">Фейкодракончик вірить у все, що бачить в інтернеті. А ми ж розуміємо – не все, що написано, є правдою.</p>
+                    </div>
+                    <div class="hero-right">
+                        <div class="dragon-container" id="dragonContainer">
+                            <img src="ChatGPT Image 6 нояб. 2025 г., 12_33_31.png" alt="Фейкодракончик" class="dragon-image">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Navigation -->
+                <div class="tabs-navigation">
+                    <button class="tab-btn active" data-tab="about">
+                        <span class="tab-icon">📚</span>
+                        <span class="tab-text">Про фейки</span>
+                    </button>
+                    <button class="tab-btn" data-tab="tips">
+                        <span class="tab-icon">💡</span>
+                        <span class="tab-text">Як розпізнати</span>
+                    </button>
+                    <button class="tab-btn" data-tab="quiz">
+                        <span class="tab-icon">🎯</span>
+                        <span class="tab-text">Тест</span>
+                    </button>
+                    <button class="tab-btn" data-tab="resources">
+                        <span class="tab-icon">🔗</span>
+                        <span class="tab-text">Ресурси</span>
+                    </button>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="tabs-content">
+                    
+                    <!-- About Tab -->
+                    <div class="tab-pane active" id="about">
+                        <h2>Що таке фейки?</h2>
+                        <div class="content-grid">
+                            <div class="info-card">
+                                <div class="card-icon">🎭</div>
+                                <h3>Дезінформація</h3>
+                                <p>Навмисне поширення неправдивої інформації для маніпуляції думкою людей</p>
+                            </div>
+                            <div class="info-card">
+                                <div class="card-icon">📰</div>
+                                <h3>Фейкові новини</h3>
+                                <p>Вигадані або перекручені новини, що видаються за справжні журналістські матеріали</p>
+                            </div>
+                            <div class="info-card">
+                                <div class="card-icon">🖼️</div>
+                                <h3>Маніпуляції з медіа</h3>
+                                <p>Підроблені фото, відео або аудіо, створені для обману</p>
+                            </div>
+                            <div class="info-card">
+                                <div class="card-icon">🤖</div>
+                                <h3>Боти і тролі</h3>
+                                <p>Автоматизовані акаунти та люди, що поширюють фейки масово</p>
+                            </div>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <h3>⚠️ Чому це важливо?</h3>
+                            <p>Фейки можуть впливати на вибори, провокувати конфлікти, руйнувати репутацію та створювати паніку. Вміння розпізнавати їх - це навичка 21 століття!</p>
+                        </div>
+                    </div>
+
+                    <!-- Tips Tab -->
+                    <div class="tab-pane" id="tips">
+                        <h2>Пам'ятай: як розпізнати фейк</h2>
+                        
+                        <div class="tips-grid">
+                            <div class="tip-card interactive-card" onclick="toggleCard(this)">
+                                <div class="tip-header">
+                                    <div class="tip-icon">💡</div>
+                                    <h3>Спочатку подумай, а потом поширюй</h3>
+                                    <span class="expand-icon">+</span>
+                                </div>
+                                <div class="tip-content">
+                                    <p>Перш ніж ділитися інформацією, задай собі питання:</p>
+                                    <ul>
+                                        <li>Чи перевірив я це джерело?</li>
+                                        <li>Чи може це бути маніпуляцією?</li>
+                                        <li>Чи викликає це сильні емоції?</li>
+                                        <li>Чи бачу я це в інших надійних джерелах?</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="tip-card interactive-card" onclick="toggleCard(this)">
+                                <div class="tip-header">
+                                    <div class="tip-icon">🔍</div>
+                                    <h3>Знайди справжнє джерело</h3>
+                                    <span class="expand-icon">+</span>
+                                </div>
+                                <div class="tip-content">
+                                    <p>Це твій щит від обману:</p>
+                                    <ul>
+                                        <li>Перевір офіційні сайти</li>
+                                        <li>Шукай першоджерело новини</li>
+                                        <li>Використовуй пошук за зображенням</li>
+                                        <li>Перевіряй дату публікації</li>
+                                    </ul>
+                                    <button class="btn btn-small" onclick="event.stopPropagation(); window.open('https://www.google.com/imghp', '_blank')">Пошук за зображенням</button>
+                                </div>
+                            </div>
+
+                            <div class="tip-card interactive-card" onclick="toggleCard(this)">
+                                <div class="tip-header">
+                                    <div class="tip-icon">⚡</div>
+                                    <h3>Фейки летять швидко, правда живе довше</h3>
+                                    <span class="expand-icon">+</span>
+                                </div>
+                                <div class="tip-content">
+                                    <p>Фейки поширюються швидше, але:</p>
+                                    <ul>
+                                        <li>Правда підтверджується з часом</li>
+                                        <li>Фейки швидко спростовуються</li>
+                                        <li>Не поспішай - дочекайся перевірки</li>
+                                        <li>Шокуюча новина = подвійна перевірка</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="tip-card interactive-card" onclick="toggleCard(this)">
+                                <div class="tip-header">
+                                    <div class="tip-icon">🖼️</div>
+                                    <h3>Зображення – це не доказ</h3>
+                                    <span class="expand-icon">+</span>
+                                </div>
+                                <div class="tip-content">
+                                    <p>Сучасні технології дозволяють:</p>
+                                    <ul>
+                                        <li>Створювати deepfake відео</li>
+                                        <li>Редагувати фото до невпізнанності</li>
+                                        <li>Використовувати старі фото в новому контексті</li>
+                                        <li>Генерувати зображення за допомогою AI</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="warning-box">
+                            <h3>🚩 Червоні прапорці фейків</h3>
+                            <div class="warning-grid">
+                                <div class="warning-item">🚩 Сенсаційні заголовки ВЕЛИКИМИ!!!</div>
+                                <div class="warning-item">🚩 Відсутність автора або джерела</div>
+                                <div class="warning-item">🚩 Багато граматичних помилок</div>
+                                <div class="warning-item">🚩 Заклики негайно поширити</div>
+                                <div class="warning-item">🚩 Підозріла URL-адреса</div>
+                                <div class="warning-item">🚩 Викликає сильний гнів або страх</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Tab -->
+                    <div class="tab-pane" id="quiz">
+                        <h2>Перевір себе: чи зможеш розпізнати фейк?</h2>
+                        <div class="quiz-container">
+                            <div id="quizContent" class="quiz-content">
+                                <!-- Quiz will be generated by JavaScript -->
+                            </div>
+                            <div id="quizResult" class="quiz-result hidden">
+                                <h3 id="resultTitle"></h3>
+                                <p id="resultText"></p>
+                                <div id="resultDragon"></div>
+                                <button class="btn btn-primary" onclick="restartQuiz()">Пройти ще раз</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resources Tab -->
+                    <div class="tab-pane" id="resources">
+                        <h2>Корисні ресурси для перевірки фактів</h2>
+                        
+                        <div class="resources-grid">
+                            <a href="https://www.stopfake.org/uk/golovna/" target="_blank" class="resource-card">
+                                <div class="resource-icon">🛡️</div>
+                                <h3>StopFake</h3>
+                                <p>Український проєкт з перевірки фактів</p>
+                            </a>
+                            <a href="https://www.pravda.com.ua/" target="_blank" class="resource-card">
+                                <div class="resource-icon">📰</div>
+                                <h3>Українська Правда</h3>
+                                <p>Незалежне інформаційне видання</p>
+                            </a>
+                            <a href="https://voxukraine.org/uk/" target="_blank" class="resource-card">
+                                <div class="resource-icon">📊</div>
+                                <h3>VoxUkraine</h3>
+                                <p>Фактчекінг економічних новин</p>
+                            </a>
+                            <a href="https://www.bbc.com/ukrainian" target="_blank" class="resource-card">
+                                <div class="resource-icon">🌍</div>
+                                <h3>BBC Україна</h3>
+                                <p>Міжнародне перевірене видання</p>
+                            </a>
+                            <a href="https://detector.media/" target="_blank" class="resource-card">
+                                <div class="resource-icon">🔍</div>
+                                <h3>Detector Media</h3>
+                                <p>Моніторинг та аналіз медіа</p>
+                            </a>
+                            <a href="https://www.google.com/imghp" target="_blank" class="resource-card">
+                                <div class="resource-icon">🖼️</div>
+                                <h3>Google Images</h3>
+                                <p>Пошук за зображенням</p>
+                            </a>
+                        </div>
+
+                        <div class="tools-box">
+                            <h3>🛠️ Інструменти для перевірки</h3>
+                            <div class="tools-grid">
+                                <div class="tool-item">
+                                    <span class="tool-emoji">🔎</span>
+                                    <div>
+                                        <h4>Пошук за зображенням</h4>
+                                        <p>Google Images, TinEye</p>
+                                    </div>
+                                </div>
+                                <div class="tool-item">
+                                    <span class="tool-emoji">📅</span>
+                                    <div>
+                                        <h4>Перевірка дати</h4>
+                                        <p>Wayback Machine</p>
+                                    </div>
+                                </div>
+                                <div class="tool-item">
+                                    <span class="tool-emoji">🌐</span>
+                                    <div>
+                                        <h4>Аналіз сайту</h4>
+                                        <p>WHOIS lookup</p>
+                                    </div>
+                                </div>
+                                <div class="tool-item">
+                                    <span class="tool-emoji">🎥</span>
+                                    <div>
+                                        <h4>Перевірка відео</h4>
+                                        <p>InVID verification</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>🐲 Фейкодракончик © 2024 | Освітній проєкт про медіаграмотність</p>
+                <button class="btn btn-small" onclick="shareWebsite()">Поділитися сайтом</button>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
