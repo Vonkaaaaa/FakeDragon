@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Скіл Хаб 157 — Навчальний портал</title>
+    <title>Skill-Hub — Навчальний портал</title>
     <meta name="description"
-        content="Скіл Хаб 157 — інтерактивний навчальний портал з гілками знань. Обирай тему, вивчай матеріал і проходь тест!">
+        content="Skill-Hub — інтерактивний навчальний портал з гілками знань. Читай матеріал та проходь тести!">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -18,9 +18,9 @@
     <!-- ===== SIDEBAR ===== -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <div class="sidebar-logo" onclick="showHome()" title="На головну">
-                <span class="logo-mark">157</span>
-                <span class="logo-label">Скіл Хаб</span>
+            <div class="sidebar-logo" onclick="scrollToTop()" title="На початок">
+                <span class="logo-mark">SH</span>
+                <span class="logo-label">Skill-Hub</span>
             </div>
             <button class="sidebar-toggle" id="sidebarToggle" aria-label="Згорнути меню">
                 <span></span><span></span><span></span>
@@ -28,68 +28,86 @@
         </div>
 
         <nav class="tree-nav" id="treeNav">
-            <div class="tree-root" onclick="showHome()">
+            <div class="tree-root" onclick="scrollToTop()">
                 <span class="tree-root-dot"></span>
-                <span class="tree-root-label">Всі гілки</span>
+                <span class="tree-root-label">Навчання</span>
             </div>
 
-            <!-- Branch: ФейкоДракончик -->
-            <div class="branch-group" id="branch-fakedragon">
-                <div class="branch-item" onclick="toggleBranch('fakedragon')">
+            <div class="sidebar-category">Навчання</div>
+
+            <!-- Anchor: ФейкоДракончик -->
+            <div class="branch-group" id="nav-fakedragon">
+                <div class="branch-item" onclick="scrollToSection('section-fakedragon')">
                     <span class="branch-icon">🐲</span>
                     <span class="branch-name">ФейкоДракончик</span>
-                    <span class="branch-chevron">›</span>
                 </div>
-                <div class="branch-leaves" id="leaves-fakedragon">
-                    <div class="leaf" onclick="openLeaf('fakedragon', 0)">Що таке фейк?</div>
-                    <div class="leaf" onclick="openLeaf('fakedragon', 1)">Як перевірити джерело</div>
-                    <div class="leaf" onclick="openLeaf('fakedragon', 2)">Deepfake та маніпуляції</div>
-                    <div class="leaf quiz-leaf" onclick="openQuiz('fakedragon')">� Тест</div>
+                <div class="branch-leaves always-open">
+                    <div class="leaf" onclick="scrollToLeaf('fakedragon', 0)">Що таке фейк?</div>
+                    <div class="leaf" onclick="scrollToLeaf('fakedragon', 1)">Як перевірити джерело</div>
+                    <div class="leaf" onclick="scrollToLeaf('fakedragon', 2)">Deepfake та маніпуляції</div>
+                    <div class="leaf quiz-leaf" onclick="scrollToQuiz('fakedragon')">🎯 Тести</div>
                 </div>
             </div>
 
-            <!-- Branch: Критичне мислення -->
-            <div class="branch-group" id="branch-critical">
-                <div class="branch-item" onclick="toggleBranch('critical')">
+            <!-- Anchor: Критичне мислення -->
+            <div class="branch-group" id="nav-critical">
+                <div class="branch-item" onclick="scrollToSection('section-critical')">
                     <span class="branch-icon">🧠</span>
                     <span class="branch-name">Критичне мислення</span>
-                    <span class="branch-chevron">›</span>
                 </div>
-                <div class="branch-leaves" id="leaves-critical">
-                    <div class="leaf" onclick="openLeaf('critical', 0)">Когнітивні упередження</div>
-                    <div class="leaf" onclick="openLeaf('critical', 1)">Логічні хиби</div>
-                    <div class="leaf" onclick="openLeaf('critical', 2)">Аналіз аргументів</div>
-                    <div class="leaf quiz-leaf" onclick="openQuiz('critical')">🎯 Тест</div>
+                <div class="branch-leaves always-open">
+                    <div class="leaf" onclick="scrollToLeaf('critical', 0)">Когнітивні упередження</div>
+                    <div class="leaf" onclick="scrollToLeaf('critical', 1)">Логічні хиби</div>
+                    <div class="leaf" onclick="scrollToLeaf('critical', 2)">Аналіз аргументів</div>
+                    <div class="leaf quiz-leaf" onclick="scrollToQuiz('critical')">🎯 Тести</div>
                 </div>
             </div>
 
-            <!-- Branch: Цифрова безпека -->
-            <div class="branch-group" id="branch-security">
-                <div class="branch-item" onclick="toggleBranch('security')">
+            <!-- Anchor: Цифрова безпека -->
+            <div class="branch-group" id="nav-security">
+                <div class="branch-item" onclick="scrollToSection('section-security')">
                     <span class="branch-icon">🔒</span>
                     <span class="branch-name">Цифрова безпека</span>
-                    <span class="branch-chevron">›</span>
                 </div>
-                <div class="branch-leaves" id="leaves-security">
-                    <div class="leaf" onclick="openLeaf('security', 0)">Паролі та акаунти</div>
-                    <div class="leaf" onclick="openLeaf('security', 1)">Фішинг та скам</div>
-                    <div class="leaf" onclick="openLeaf('security', 2)">Приватність у мережі</div>
-                    <div class="leaf quiz-leaf" onclick="openQuiz('security')">🎯 Тест</div>
+                <div class="branch-leaves always-open">
+                    <div class="leaf" onclick="scrollToLeaf('security', 0)">Паролі та акаунти</div>
+                    <div class="leaf" onclick="scrollToLeaf('security', 1)">Фішинг та скам</div>
+                    <div class="leaf" onclick="scrollToLeaf('security', 2)">Приватність у мережі</div>
+                    <div class="leaf quiz-leaf" onclick="scrollToQuiz('security')">🎯 Тести</div>
                 </div>
             </div>
 
-            <!-- Branch: Соціальні мережі -->
-            <div class="branch-group" id="branch-social">
-                <div class="branch-item" onclick="toggleBranch('social')">
+            <!-- Anchor: Соціальні мережі -->
+            <div class="branch-group" id="nav-social">
+                <div class="branch-item" onclick="scrollToSection('section-social')">
                     <span class="branch-icon">📱</span>
                     <span class="branch-name">Соціальні мережі</span>
-                    <span class="branch-chevron">›</span>
                 </div>
-                <div class="branch-leaves" id="leaves-social">
-                    <div class="leaf" onclick="openLeaf('social', 0)">Алгоритми та бульбашки</div>
-                    <div class="leaf" onclick="openLeaf('social', 1)">Маніпуляції в мережах</div>
-                    <div class="leaf" onclick="openLeaf('social', 2)">Захист репутації</div>
-                    <div class="leaf quiz-leaf" onclick="openQuiz('social')">🎯 Тест</div>
+                <div class="branch-leaves always-open">
+                    <div class="leaf" onclick="scrollToLeaf('social', 0)">Алгоритми та бульбашки</div>
+                    <div class="leaf" onclick="scrollToLeaf('social', 1)">Маніпуляції в мережах</div>
+                    <div class="leaf" onclick="scrollToLeaf('social', 2)">Захист репутації</div>
+                    <div class="leaf quiz-leaf" onclick="scrollToQuiz('social')">🎯 Тести</div>
+                </div>
+            </div>
+
+            <div class="sidebar-category">Гайди</div>
+
+            <!-- Anchor: Гайди -->
+            <div class="branch-group" id="nav-guides">
+                <div class="branch-item" onclick="scrollToSection('section-guides')">
+                    <span class="branch-icon">📘</span>
+                    <span class="branch-name">Гайди</span>
+                </div>
+                <div class="branch-leaves always-open">
+                    <div class="leaf" onclick="scrollToLeaf('guides', 0)">Skill-HUB</div>
+                    <div class="leaf" onclick="scrollToLeaf('guides', 1)">Реєстрація в Helsi</div>
+                    <div class="leaf" onclick="scrollToLeaf('guides', 2)">Програма «єОселя»</div>
+                    <div class="leaf" onclick="scrollToLeaf('guides', 3)">Виплати для ВПО</div>
+                    <div class="leaf" onclick="scrollToLeaf('guides', 4)">Tabletki.ua</div>
+                    <div class="leaf" onclick="scrollToLeaf('guides', 5)">Мінна безпека</div>
+                    <div class="leaf" onclick="scrollToLeaf('guides', 6)">Домедична допомога</div>
+                    <div class="leaf" onclick="scrollToLeaf('guides', 7)">Військова безпека</div>
                 </div>
             </div>
         </nav>
@@ -114,7 +132,7 @@
                 <span></span><span></span><span></span>
             </button>
             <div class="breadcrumb" id="breadcrumb">
-                <span onclick="showHome()" class="bc-link">Скіл Хаб 157</span>
+                <span class="bc-link" onclick="scrollToTop()">Skill-Hub</span>
             </div>
             <div class="topbar-right">
                 <button class="theme-toggle" id="themeToggle" title="Змінити тему">
@@ -127,153 +145,538 @@
             </div>
         </header>
 
-        <!-- ===== HOME PAGE ===== -->
-        <div id="homePage" class="page active">
-            <section class="home-hero">
+        <!-- ===== SINGLE PAGE CONTENT ===== -->
+        <div class="single-page" id="singlePage">
+
+            <!-- Hero -->
+            <section class="home-hero" id="hero">
                 <div class="hero-tag">Навчальний портал</div>
-                <h1 class="hero-title">Скіл Хаб <span class="accent">157</span></h1>
-                <p class="hero-sub">Обирай гілку, читай матеріал і проходь тест.<br>Чотири напрямки — безліч знань.</p>
+                <h1 class="hero-title"><span class="accent">Skill-Hub</span></h1>
+                <p class="hero-sub">Гортай вниз — читай матеріал і проходь тести.<br>Чотири напрямки — безліч знань.</p>
                 <div class="hero-stats">
-                    <div class="stat-item"><span class="stat-num">4</span><span class="stat-lbl">гілки</span></div>
-                    <div class="stat-item"><span class="stat-num">12</span><span class="stat-lbl">теми</span></div>
+                    <div class="stat-item"><span class="stat-num">4</span><span class="stat-lbl">теми</span></div>
+                    <div class="stat-item"><span class="stat-num">12</span><span class="stat-lbl">розділи</span></div>
                     <div class="stat-item"><span class="stat-num">32</span><span class="stat-lbl">питань</span></div>
                 </div>
             </section>
 
-            <section class="branches-grid-section">
-                <h2 class="section-label">Гілки знань</h2>
-                <div class="branches-grid">
-                    <div class="branch-card" onclick="toggleBranch('fakedragon'); scrollToBranch()">
-                        <div class="bc-header">
-                            <span class="bc-icon">🐲</span>
-                            <span class="bc-tag">Медіаграмотність</span>
-                        </div>
-                        <h3 class="bc-title">ФейкоДракончик</h3>
-                        <p class="bc-desc">Навчись відрізняти правду від брехні, перевіряти джерела та захищатися від
-                            маніпуляцій у медіа.</p>
-                        <div class="bc-footer">
-                            <span class="bc-leaves">3 теми</span>
-                            <span class="bc-arrow">→</span>
+            <!-- ===== SECTION: ФейкоДракончик ===== -->
+            <section class="content-section" id="section-fakedragon">
+                <div class="section-header">
+                    <span class="section-icon">🐲</span>
+                    <div>
+                        <div class="section-tag">Медіаграмотність</div>
+                        <h2 class="section-title">ФейкоДракончик</h2>
+                    </div>
+                </div>
+
+                <div class="leaves-container">
+                    <div class="leaf-block" id="leaf-fakedragon-0">
+                        <h3 class="leaf-block-title">Що таке фейк?</h3>
+                        <div class="leaf-block-content">
+                            <p><strong>Фейк</strong> (англ. fake — підробка) — це навмисно створена неправдива
+                                інформація, яка подається як справжня новина. На відміну від помилки журналіста, фейк
+                                завжди має <strong>мету</strong>: обманути, залякати, посіяти паніку або змінити
+                                ставлення до певної події.</p>
+                            <div class="callout">Головна зброя фейку — твої емоції. Якщо новина викликає у тебе гнів,
+                                сильний страх або ейфорію — зупинись і перевір її.</div>
+                            <h3>Чому фейки так швидко поширюються?</h3>
+                            <ul>
+                                <li>Вони <strong>прості</strong> і дають легкі відповіді на складні питання.</li>
+                                <li>Вони використовують <strong>емоції</strong> (клікбейтні заголовки).</li>
+                                <li>Ми схильні вірити тому, що підтверджує нашу точку зору (когнітивне упередження).
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="branch-card" onclick="toggleBranch('critical'); scrollToBranch()">
-                        <div class="bc-header">
-                            <span class="bc-icon">🧠</span>
-                            <span class="bc-tag">Логіка</span>
-                        </div>
-                        <h3 class="bc-title">Критичне мислення</h3>
-                        <p class="bc-desc">Розумій когнітивні упередження, розпізнавай логічні хиби та будуй сильні
-                            аргументи.</p>
-                        <div class="bc-footer">
-                            <span class="bc-leaves">3 теми</span>
-                            <span class="bc-arrow">→</span>
-                        </div>
-                    </div>
-                    <div class="branch-card" onclick="toggleBranch('security'); scrollToBranch()">
-                        <div class="bc-header">
-                            <span class="bc-icon">🔒</span>
-                            <span class="bc-tag">Безпека</span>
-                        </div>
-                        <h3 class="bc-title">Цифрова безпека</h3>
-                        <p class="bc-desc">Захисти свої акаунти, навчись розпізнавати фішинг та зберігай приватність у
-                            мережі.</p>
-                        <div class="bc-footer">
-                            <span class="bc-leaves">3 теми</span>
-                            <span class="bc-arrow">→</span>
+
+                    <div class="leaf-block" id="leaf-fakedragon-1">
+                        <h3 class="leaf-block-title">Як перевірити джерело</h3>
+                        <div class="leaf-block-content">
+                            <p>Перед тим як поширити пост або повірити новині, зроби три кроки перевірки:</p>
+                            <ol>
+                                <li><strong>Хто автор?</strong> Перевір профіль у соцмережі або сайт. Якщо сайт
+                                    називається "Super-News-24" і не має розділу "Про нас" — це підозріло.</li>
+                                <li><strong>Першоджерело.</strong> Звідки взяли інформацію? Якщо посилаються на "кума
+                                    знайомого депутата" — це не джерело. Шукай посилання на офіційні органи або великі
+                                    міжнародні агенції (Reuters, BBC тощо).</li>
+                                <li><strong>Дата.</strong> Фейкороби часто використовують старі відео або фото, видаючи
+                                    їх за сьогоднішні події.</li>
+                            </ol>
+                            <div class="example-box">
+                                <div class="ex-label">Лайфхак</div>
+                                <p>Використовуй <strong>зворотний пошук зображень</strong> у Google. Це допоможе
+                                    дізнатися, коли насправді було зроблено фото.</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="branch-card" onclick="toggleBranch('social'); scrollToBranch()">
-                        <div class="bc-header">
-                            <span class="bc-icon">📱</span>
-                            <span class="bc-tag">Соцмережі</span>
+
+                    <div class="leaf-block" id="leaf-fakedragon-2">
+                        <h3 class="leaf-block-title">Deepfake та маніпуляції</h3>
+                        <div class="leaf-block-content">
+                            <p>Технології не стоять на місці. Сьогодні за допомогою штучного інтелекту можна створити
+                                відео, де відома людина каже те, чого ніколи не говорила. Це і є <strong>Діпфейк
+                                    (Deepfake)</strong>.</p>
+                            <h3>Ознаки діпфейку:</h3>
+                            <ul>
+                                <li>Дивне кліпання очима (або його відсутність).</li>
+                                <li>Незбіг рухів губ із промовою.</li>
+                                <li>"Мильне" зображення навколо обличчя.</li>
+                            </ul>
+                            <p>Пам'ятай: навіть відео сьогодні не є 100% доказом. Завжди шукай інший підтверджений
+                                ракурс або офіційний коментар.</p>
                         </div>
-                        <h3 class="bc-title">Соціальні мережі</h3>
-                        <p class="bc-desc">Розумій алгоритми, уникай маніпуляцій та захищай свою онлайн-репутацію.</p>
-                        <div class="bc-footer">
-                            <span class="bc-leaves">3 теми</span>
-                            <span class="bc-arrow">→</span>
+                    </div>
+                </div>
+
+                <!-- Quiz block -->
+                <div class="quiz-block" id="quiz-fakedragon">
+                    <div class="quiz-block-header">
+                        <span class="quiz-block-icon">🎯</span>
+                        <div>
+                            <div class="quiz-block-label">Тести</div>
+                            <div class="quiz-block-title">ФейкоДракончик</div>
+                        </div>
+                        <button class="quiz-start-btn" id="start-btn-fakedragon" onclick="initQuiz('fakedragon')">Почати
+                            тест →</button>
+                    </div>
+                    <div class="quiz-inline-area hidden" id="quiz-area-fakedragon"></div>
+                </div>
+            </section>
+
+            <!-- ===== SECTION: Критичне мислення ===== -->
+            <section class="content-section" id="section-critical">
+                <div class="section-header">
+                    <span class="section-icon">🧠</span>
+                    <div>
+                        <div class="section-tag">Логіка</div>
+                        <h2 class="section-title">Критичне мислення</h2>
+                    </div>
+                </div>
+
+                <div class="leaves-container">
+                    <div class="leaf-block" id="leaf-critical-0">
+                        <h3 class="leaf-block-title">Когнітивні упередження</h3>
+                        <div class="leaf-block-content">
+                            <p>Наш мозок любить спрощувати світ. <strong>Когнітивні упередження</strong> — це ментальні
+                                пастки, які заважають нам думати об'єктивно.</p>
+                            <div class="callout">Найвідоміше — "упередження підтвердження". Ми шукаємо факти, які
+                                доводять нашу правоту, і ігноруємо все інше.</div>
+                            <p>Цей ефект активно використовується у пропаганді, рекламі та маніпуляціях. Знати про нього
+                                — вже половина захисту.</p>
+                        </div>
+                    </div>
+
+                    <div class="leaf-block" id="leaf-critical-1">
+                        <h3 class="leaf-block-title">Логічні хиби</h3>
+                        <div class="leaf-block-content">
+                            <p>Хибна аргументація часто використовується в суперечках. Наприклад, <strong>апеляція до
+                                    авторитету</strong> або <strong>солом'яне опудало</strong>.</p>
+                            <ul>
+                                <li><strong>Ad Hominem</strong> — атака на людину замість аргументу.</li>
+                                <li><strong>Strawman</strong> — спрощення позиції опонента до абсурду.</li>
+                                <li><strong>Апеляція до авторитету</strong> — "він сказав, значить правда".</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="leaf-block" id="leaf-critical-2">
+                        <h3 class="leaf-block-title">Аналіз аргументів</h3>
+                        <div class="leaf-block-content">
+                            <p>Як перевірити, чи аргумент сильний? Розділи його на тезу, докази та висновок.</p>
+                            <div class="example-box">
+                                <div class="ex-label">Структура сильного аргументу</div>
+                                <p><strong>Теза → Доказ → Висновок.</strong> Якщо будь-яка ланка відсутня або хибна —
+                                    аргумент слабкий.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quiz-block" id="quiz-critical">
+                    <div class="quiz-block-header">
+                        <span class="quiz-block-icon">🎯</span>
+                        <div>
+                            <div class="quiz-block-label">Тести</div>
+                            <div class="quiz-block-title">Критичне мислення</div>
+                        </div>
+                        <button class="quiz-start-btn" id="start-btn-critical" onclick="initQuiz('critical')">Почати
+                            тест →</button>
+                    </div>
+                    <div class="quiz-inline-area hidden" id="quiz-area-critical"></div>
+                </div>
+            </section>
+
+            <!-- ===== SECTION: Цифрова безпека ===== -->
+            <section class="content-section" id="section-security">
+                <div class="section-header">
+                    <span class="section-icon">🔒</span>
+                    <div>
+                        <div class="section-tag">Безпека</div>
+                        <h2 class="section-title">Цифрова безпека</h2>
+                    </div>
+                </div>
+
+                <div class="leaves-container">
+                    <div class="leaf-block" id="leaf-security-0">
+                        <h3 class="leaf-block-title">Паролі та акаунти</h3>
+                        <div class="leaf-block-content">
+                            <p>Твій пароль — це ключ від квартири. Не використовуй '123456' або дату народження.</p>
+                            <ul>
+                                <li>Використовуй мінімум 12 символів (літери, цифри, знаки).</li>
+                                <li>Кожен сервіс — унікальний пароль.</li>
+                                <li>Увімкни <strong>двофакторну автентифікацію (2FA)</strong>.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="leaf-block" id="leaf-security-1">
+                        <h3 class="leaf-block-title">Фішинг та скам</h3>
+                        <div class="leaf-block-content">
+                            <p><strong>Фішинг</strong> — це спроба виманити твої дані через підробні сайти або листи.
+                            </p>
+                            <div class="callout">Банки ніколи не просять твій пароль. Якщо просять — це шахраї.</div>
+                            <p>Перевіряй адресу сайту, шукай замок (https) у рядку браузера.</p>
+                        </div>
+                    </div>
+
+                    <div class="leaf-block" id="leaf-security-2">
+                        <h3 class="leaf-block-title">Приватність у мережі</h3>
+                        <div class="leaf-block-content">
+                            <p>Те, що потрапило в інтернет — залишається там назавжди. Налаштуй приватність у
+                                соцмережах.</p>
+                            <ul>
+                                <li>Не публікуй паспортні дані та місцезнаходження.</li>
+                                <li>Остережись відкритих Wi-Fi мереж для важливих операцій.</li>
+                                <li>Регулярно перевіряй, хто бачить твій профіль.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quiz-block" id="quiz-security">
+                    <div class="quiz-block-header">
+                        <span class="quiz-block-icon">🎯</span>
+                        <div>
+                            <div class="quiz-block-label">Тести</div>
+                            <div class="quiz-block-title">Цифрова безпека</div>
+                        </div>
+                        <button class="quiz-start-btn" id="start-btn-security" onclick="initQuiz('security')">Почати
+                            тест →</button>
+                    </div>
+                    <div class="quiz-inline-area hidden" id="quiz-area-security"></div>
+                </div>
+            </section>
+
+            <!-- ===== SECTION: Соціальні мережі ===== -->
+            <section class="content-section" id="section-social">
+                <div class="section-header">
+                    <span class="section-icon">📱</span>
+                    <div>
+                        <div class="section-tag">Соцмережі</div>
+                        <h2 class="section-title">Соціальні мережі</h2>
+                    </div>
+                </div>
+
+                <div class="leaves-container">
+                    <div class="leaf-block" id="leaf-social-0">
+                        <h3 class="leaf-block-title">Алгоритми та бульбашки</h3>
+                        <div class="leaf-block-content">
+                            <p>Соцмережі показують нам те, що нам подобається. Так виникає <strong>інформаційна
+                                    бульбашка</strong>.</p>
+                            <div class="callout">Ти перестаєш бачити альтернативні думки — світ здається однобоким.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="leaf-block" id="leaf-social-1">
+                        <h3 class="leaf-block-title">Маніпуляції в мережах</h3>
+                        <div class="leaf-block-content">
+                            <p>Боти, тролі та астротерфінг — як створюється ілюзія масової думки.</p>
+                            <ul>
+                                <li><strong>Боти</strong> — фейкові акаунти для накрутки реакцій.</li>
+                                <li><strong>Тролі</strong> — провокатори для розпалювання конфліктів.</li>
+                                <li><strong>Астротерфінг</strong> — організована імітація "органічного" руху.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="leaf-block" id="leaf-social-2">
+                        <h3 class="leaf-block-title">Захист репутації</h3>
+                        <div class="leaf-block-content">
+                            <p>Твій цифровий слід впливає на майбутню роботу та навчання.</p>
+                            <div class="example-box">
+                                <div class="ex-label">Пам'ятай</div>
+                                <p>Все, що ти лайкав, писав або постив — формує твій цифровий портрет. Думай перед
+                                    публікацією.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quiz-block" id="quiz-social">
+                    <div class="quiz-block-header">
+                        <span class="quiz-block-icon">🎯</span>
+                        <div>
+                            <div class="quiz-block-label">Тести</div>
+                            <div class="quiz-block-title">Соціальні мережі</div>
+                        </div>
+                        <button class="quiz-start-btn" id="start-btn-social" onclick="initQuiz('social')">Почати тест
+                            →</button>
+                    </div>
+                    <div class="quiz-inline-area hidden" id="quiz-area-social"></div>
+                </div>
+            </section>
+
+            <!-- ===== SECTION: Гайди ===== -->
+            <section class="content-section" id="section-guides">
+                <div class="section-header">
+                    <span class="section-icon">📘</span>
+                    <div>
+                        <div class="section-tag">Практика</div>
+                        <h2 class="section-title">Гайди</h2>
+                    </div>
+                </div>
+
+                <div class="leaves-container">
+                    <div class="leaf-block" id="leaf-guides-0">
+                        <h3 class="leaf-block-title">Skill-HUB</h3>
+                        <div class="leaf-block-content">
+                            <p><strong>«Kharkiv Skills Hub»</strong> — це інноваційна модель перетворення навчального простору на відкритий центр компетенцій громади. Проєкт поєднує можливості «Пунктів незламності» з активним молодіжним волонтерством.</p>
+                            
+                            <div class="callout"><strong>Основна ідея:</strong> На базі навчального закладу створюється простір, де підготовлена молодь стає тьюторами для дорослих. Вони допомагають пенсіонерам, ВПО та ветеранам опановувати цифрові сервіси, правила енергобезпеки та навички першої допомоги.</div>
+
+                            <h3>Які проблеми вирішує проєкт?</h3>
+                            <ul>
+                                <li><strong>Соціальна стійкість:</strong> Зменшення цифрового розриву між поколіннями в умовах війни.</li>
+                                <li><strong>Практична допомога:</strong> Консультації щодо державних виплат, безпеки та психологічної підтримки.</li>
+                                <li><strong>Цифровий продукт:</strong> Створення онлайн-платформи з навчальними курсами та гайдами.</li>
+                                <li><strong>Розвиток молоді:</strong> Формування активної громадянської позиції та лідерських якостей у молоді.</li>
+                            </ul>
+
+                            <div class="example-box">
+                                <div class="ex-label">10 Напрямків</div>
+                                <p>Цифрова та побутова допомога, Освітній «Пункт незламності», Взаємодія поколінь, Простір соціальної підтримки, Сертифіковане молодіжне волонтерство, Допомога ветеранам і ВПО, Енергетична та мінна безпека, Цифрова платформа знань, Соціальна адаптація молоді, Практичні життєві навички.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="leaf-block" id="leaf-guides-1">
+                        <h3 class="leaf-block-title">Реєстрація в «Helsi»</h3>
+                        <div class="leaf-block-content">
+                            <h3>1. Завантаження застосунку</h3>
+                            <ul>
+                                <li>Для <strong>Android</strong>: Відкрийте Google Play Market.</li>
+                                <li>Для <strong>iPhone</strong>: Відкрийте App Store.</li>
+                                <li>Введіть у пошуку «Helsi» та натисніть «Встановити».</li>
+                            </ul>
+                            
+                            <div class="callout">Використовуйте лише <strong>офіційні магазини застосунків</strong> для захисту персональних даних.</div>
+
+                            <h3>2. Вхід та авторизація за номером</h3>
+                            <ul>
+                                <li>Відкрийте встановлений застосунок на смартфоні і натисніть кнопку «Увійти» або «Реєстрація».</li>
+                                <li>Введіть свій дійсний номер мобільного телефону.</li>
+                                <li>Отримайте SMS-код або push-повідомлення та введіть цифри у відповідне поле для підтвердження.</li>
+                            </ul>
+
+                            <h3>3. Заповнення особистих даних</h3>
+                            <ul>
+                                <li>Введіть своє прізвище, ім’я та по батькові (дані мають збігатися з паспортними для коректного відображення медичної карти).</li>
+                                <li>Підтвердьте згоду на обробку персональних даних. Це необхідно для зв'язку профілю з державною системою охорони здоров'я.</li>
+                            </ul>
+
+                            <h3>4. Налаштування профілю та безпеки</h3>
+                            <ul>
+                                <li>За наявності технічної можливості смартфона активуйте вхід за відбитком пальця або FaceID. Це пришвидшить доступ до медичних даних.</li>
+                                <li>Надайте дозволи на надсилання сповіщень, щоб вчасно отримувати нагадування про записи до лікарів.</li>
+                            </ul>
+
+                            <div class="example-box">
+                                <div class="ex-label">Що є в Helsi?</div>
+                                <p>Пошук лікарів, онлайн-запис на прийом, перегляд електронних рецептів, направлень та результатів аналізів, а також можливість керувати записами дітей або родичів.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="leaf-block" id="leaf-guides-2">
+                        <h3 class="leaf-block-title">Програма «єОселя»</h3>
+                        <div class="leaf-block-content">
+                            <p>Державна програма іпотечного кредитування житла доступна для <strong>військових, медиків, педагогів, ВПО та молоді без власного житла</strong>.</p>
+                            
+                            <h3>Послідовний гайд</h3>
+                            <ul>
+                                <li><strong>Крок 1. Подання заявки.</strong> Зайдіть у Дію, авторизуйтеся, виберіть послугу «єОселя» та заповніть анкету.</li>
+                                <li><strong>Крок 2. Рішення банку.</strong> Отримайте попереднє рішення від обраного банку-партнера.</li>
+                                <li><strong>Крок 3. Пошук.</strong> Знайдіть та підберіть підходяще вам житло.</li>
+                                <li><strong>Крок 4. Іпотека.</strong> Оформіть іпотеку безпосередньо у відділенні банку.</li>
+                            </ul>
+                            
+                            <div class="example-box">
+                                <div class="ex-label">Офіційні джерела інформації</div>
+                                <p>Сайт <strong>єОселя</strong>, <strong>Ощадбанк</strong>, <strong>ПриватБанк</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="leaf-block" id="leaf-guides-3">
+                        <h3 class="leaf-block-title">Виплати для ВПО</h3>
+                        <div class="leaf-block-content">
+                            <h3>Послідовний гайд отримання виплат</h3>
+                            <ol>
+                                <li><strong>Отримати статус ВПО.</strong> Подати заяву на отримання статусу через застосунок Дія або звернутися офлайн до найближчого ЦНАП/органу соцзахисту.</li>
+                                <li><strong>Подати заяву на грошову допомогу.</strong> Також можна зробити через Дію (розділ <em>«Послуги» → «Допомога ВПО»</em>) або особисто в управлінні соцзахисту.</li>
+                                <li><strong>Вказати реквізити.</strong> Вам знадобиться ваш IBAN банківської картки та особисті дані.</li>
+                            </ol>
+                            
+                            <div class="callout">Кошти зазвичай надходять щомісячно на вказану банківську карту.</div>
+                            
+                            <div class="example-box">
+                                <div class="ex-label">Офіційні джерела інформації</div>
+                                <p>Кабінет Міністрів України, Міністерство соціальної політики України, Портал Дія.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="leaf-block" id="leaf-guides-4">
+                        <h3 class="leaf-block-title">Карта аптек України (Tabletki.ua)</h3>
+                        <div class="leaf-block-content">
+                            <p>Сервіс <strong>Tabletki.ua</strong> допомагає знайти ліки у найближчих аптеках з актуальними цінами.</p>
+                            
+                            <h3>Як шукати ліки?</h3>
+                            <ol>
+                                <li>Відкрийте <strong>сайт</strong> або завантажте <strong>додаток</strong>.</li>
+                                <li>Введіть назву потрібного препарату в рядок пошуку.</li>
+                                <li>Перейдіть у зручний розділ <strong>«Аптеки поруч»</strong>.</li>
+                                <li>Використайте вбудовану карту для пошуку найближчої до вас аптеки на районі.</li>
+                                <li>Перевірте наявність препарату, ціну та графік роботи обраної аптеки.</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="leaf-block" id="leaf-guides-5">
+                        <h3 class="leaf-block-title">Пам'ятка з мінної безпеки</h3>
+                        <div class="leaf-block-content">
+                            <h3>Де існує небезпека:</h3>
+                            <ul>
+                                <li>Ліси, поля, посадки, узбіччя доріг.</li>
+                                <li>Покинуті будівлі, бліндажі, окопи.</li>
+                                <li>Дитячі майданчики, водойми (особливо на деокупованих територіях).</li>
+                                <li>Невідомі предмети після обстрілів.</li>
+                            </ul>
+
+                            <hr style="border: none; border-top: 1px solid var(--border); margin: 24px 0;">
+
+                            <h3>Якщо побачили підозрілий предмет:</h3>
+                            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                                <div style="flex: 1; min-width: 200px;">
+                                    <h4 style="color: #e05050; margin-bottom: 8px;">❌ НЕ можна:</h4>
+                                    <ul>
+                                        <li>Торкатися</li>
+                                        <li>Пересувати</li>
+                                        <li>Розбирати</li>
+                                        <li>Кидати</li>
+                                        <li>Підпалювати</li>
+                                    </ul>
+                                </div>
+                                <div style="flex: 1; min-width: 200px;">
+                                    <h4 style="color: #22a05a; margin-bottom: 8px;">✅ МОЖНА:</h4>
+                                    <ul>
+                                        <li>Зупинитися</li>
+                                        <li>Не підходити ближче</li>
+                                        <li>Попередити інших</li>
+                                        <li>Повільно повернутися своїми слідами</li>
+                                        <li><strong>Зателефонувати 101 або 102</strong></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="callout">
+                                <strong>Правило трьох «НЕ»:</strong>
+                                <ul style="margin-bottom: 0; margin-top: 6px;">
+                                    <li>Не підходь</li>
+                                    <li>Не чіпай</li>
+                                    <li>Не панікуй</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="leaf-block" id="leaf-guides-6">
+                        <h3 class="leaf-block-title">Перша домедична допомога</h3>
+                        <div class="leaf-block-content">
+                            <ol>
+                                <li><strong>Переконайся у власній безпеці</strong>
+                                    <ul>
+                                        <li>Немає обстрілу</li>
+                                        <li>Немає мін чи уламків</li>
+                                        <li>Місце безпечне</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Зупинка кровотечі</strong>
+                                    <ul>
+                                        <li>Натиснути на рану</li>
+                                        <li>Використати турнікет (вище рани)</li>
+                                        <li>Зафіксувати час накладання</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Перевірка дихання</strong>
+                                    <ul>
+                                        <li>Чи дихає людина?</li>
+                                        <li>Якщо ні – перевірити прохідність дихальних шляхів</li>
+                                        <li>За потреби – розпочати серцево-легеневу реанімацію</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Обробка ран</strong>
+                                    <ul>
+                                        <li>Закрити стерильною пов'язкою</li>
+                                        <li>Не витягати сторонні предмети з рани</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Виклик допомоги</strong>
+                                    <ul>
+                                        <li><strong style="color: #e05050;">103</strong> – швидка</li>
+                                        <li>Чітко назвати адресу</li>
+                                        <li>Описати стан постраждалого</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="leaf-block" id="leaf-guides-7">
+                        <h3 class="leaf-block-title">Пам'ятка з військової безпеки</h3>
+                        <div class="leaf-block-content">
+                            <h3>Під час повітряної тривоги</h3>
+                            <ul>
+                                <li>Негайно пройти в укриття.</li>
+                                <li>Дотримуватися правила «двох стін», якщо немає укриття.</li>
+                                <li>Не користуватися ліфтом.</li>
+                                <li>Не залишатися біля вікон.</li>
+                            </ul>
+
+                            <h3>Інформаційна безпека:</h3>
+                            <ul>
+                                <li>Не публікувати фото/відео прильотів.</li>
+                                <li>Не знімати військову техніку.</li>
+                                <li>Не поширювати неперевірену інформацію.</li>
+                                <li>Довіряти лише офіційним джерелам.</li>
+                            </ul>
+
+                            <div class="example-box">
+                                <div class="ex-label">Вдома:</div>
+                                <ul>
+                                    <li>Підготувати «тривожну валізу».</li>
+                                    <li>Знати розташування найближчого укриття.</li>
+                                    <li>Мати запас води та ліків.</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
-        </div>
 
-        <!-- ===== LEAF PAGE (Info) ===== -->
-        <div id="leafPage" class="page">
-            <div class="leaf-header">
-                <button class="back-btn" onclick="goBackFromLeaf()">← Назад</button>
-                <div class="leaf-meta">
-                    <span class="leaf-branch-tag" id="leafBranchTag"></span>
-                    <h1 class="leaf-title" id="leafTitle"></h1>
-                </div>
-            </div>
-            <div class="leaf-content" id="leafContent"></div>
-            <div class="leaf-nav-footer">
-                <button class="leaf-btn ghost" id="leafPrevBtn" onclick="navLeaf(-1)">← Попередня</button>
-                <button class="leaf-btn primary" id="leafNextBtn" onclick="navLeaf(1)">Наступна →</button>
-            </div>
-        </div>
-
-        <!-- ===== QUIZ PAGE ===== -->
-        <div id="quizPage" class="page">
-            <div class="quiz-header">
-                <button class="back-btn" onclick="goBackFromQuiz()">← До матеріалів</button>
-                <div class="quiz-title-block">
-                    <span class="quiz-branch-tag" id="quizBranchTag"></span>
-                    <h1 class="quiz-main-title">Тест</h1>
-                </div>
-            </div>
-
-            <!-- Quiz Start Screen -->
-            <div id="quizStart" class="quiz-screen">
-                <div class="quiz-start-card">
-                    <div class="qs-icon" id="qsIcon"></div>
-                    <h2 id="qsTitle"></h2>
-                    <p id="qsDesc">8 питань по темі гілки. Читай уважно і обирай найкращу відповідь.</p>
-                    <div class="qs-details">
-                        <span>📝 8 питань</span>
-                        <span>⏱ ~5 хвилин</span>
-                    </div>
-                    <button class="quiz-cta" onclick="startQuiz()">Почати тест →</button>
-                </div>
-            </div>
-
-            <!-- Quiz Active -->
-            <div id="quizActive" class="quiz-screen hidden">
-                <div class="quiz-progress-bar-wrap">
-                    <div class="quiz-progress-fill" id="quizProgressFill"></div>
-                </div>
-                <div class="quiz-counter" id="quizCounter">Питання 1 з 8</div>
-                <div class="quiz-card" id="quizCard">
-                    <p class="quiz-question" id="quizQuestion"></p>
-                    <div class="quiz-options" id="quizOptions"></div>
-                </div>
-                <div class="quiz-actions">
-                    <button class="qbtn ghost" id="qPrevBtn" onclick="qNav(-1)">← Назад</button>
-                    <button class="qbtn primary" id="qNextBtn" onclick="qNav(1)" disabled>Далі →</button>
-                </div>
-                <div class="explanation-box hidden" id="explanationBox">
-                    <span class="exp-label"></span>
-                    <p id="expText"></p>
-                </div>
-            </div>
-
-            <!-- Quiz Result -->
-            <div id="quizResult" class="quiz-screen hidden">
-                <div class="result-card">
-                    <div class="result-emoji" id="resultEmoji"></div>
-                    <h2 class="result-title" id="resultTitle"></h2>
-                    <div class="result-score" id="resultScore"></div>
-                    <p class="result-msg" id="resultMsg"></p>
-                    <div class="result-breakdown" id="resultBreakdown"></div>
-                    <div class="result-actions">
-                        <button class="qbtn ghost" onclick="resetQuiz()">Пройти ще раз</button>
-                        <button class="qbtn primary" onclick="showHome()">На головну →</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        </div><!-- /single-page -->
     </div><!-- /main-wrap -->
 
     <script src="script.js"></script>
