@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="uk">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>Skill-Hub — Навчальний портал</title>
-    <meta name="description"
-        content="Skill-Hub — інтерактивний навчальний портал з гілками знань. Читай матеріал та проходь тести!">
+    <meta name="description" content="Skill-Hub — інтерактивний навчальний портал з гілками знань. Читай матеріал та проходь тести!">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-
-    <!-- ===== SIDEBAR ===== -->
+    <canvas id="bgCanvas"></canvas>
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <div class="sidebar-logo" onclick="scrollToTop()" title="На початок">
@@ -26,16 +26,12 @@
                 <span></span><span></span><span></span>
             </button>
         </div>
-
         <nav class="tree-nav" id="treeNav">
             <div class="tree-root" onclick="scrollToTop()">
                 <span class="tree-root-dot"></span>
                 <span class="tree-root-label">Навчання</span>
             </div>
-
             <div class="sidebar-category">Навчання</div>
-
-            <!-- Anchor: ФейкоДракончик -->
             <div class="branch-group" id="nav-fakedragon">
                 <div class="branch-item" onclick="scrollToSection('section-fakedragon')">
                     <span class="branch-icon">🐲</span>
@@ -48,8 +44,6 @@
                     <div class="leaf quiz-leaf" onclick="scrollToQuiz('fakedragon')">🎯 Тести</div>
                 </div>
             </div>
-
-            <!-- Anchor: Критичне мислення -->
             <div class="branch-group" id="nav-critical">
                 <div class="branch-item" onclick="scrollToSection('section-critical')">
                     <span class="branch-icon">🧠</span>
@@ -62,8 +56,6 @@
                     <div class="leaf quiz-leaf" onclick="scrollToQuiz('critical')">🎯 Тести</div>
                 </div>
             </div>
-
-            <!-- Anchor: Цифрова безпека -->
             <div class="branch-group" id="nav-security">
                 <div class="branch-item" onclick="scrollToSection('section-security')">
                     <span class="branch-icon">🔒</span>
@@ -76,8 +68,6 @@
                     <div class="leaf quiz-leaf" onclick="scrollToQuiz('security')">🎯 Тести</div>
                 </div>
             </div>
-
-            <!-- Anchor: Соціальні мережі -->
             <div class="branch-group" id="nav-social">
                 <div class="branch-item" onclick="scrollToSection('section-social')">
                     <span class="branch-icon">📱</span>
@@ -90,10 +80,7 @@
                     <div class="leaf quiz-leaf" onclick="scrollToQuiz('social')">🎯 Тести</div>
                 </div>
             </div>
-
             <div class="sidebar-category">Гайди</div>
-
-            <!-- Anchor: Гайди -->
             <div class="branch-group" id="nav-guides">
                 <div class="branch-item" onclick="scrollToSection('section-guides')">
                     <span class="branch-icon">📘</span>
@@ -111,7 +98,6 @@
                 </div>
             </div>
         </nav>
-
         <div class="sidebar-footer">
             <div class="progress-summary">
                 <span class="prog-label">Прогрес</span>
@@ -122,11 +108,7 @@
             </div>
         </div>
     </aside>
-
-    <!-- ===== MAIN ===== -->
     <div class="main-wrap" id="mainWrap">
-
-        <!-- Top bar -->
         <header class="topbar">
             <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleSidebar()">
                 <span></span><span></span><span></span>
@@ -144,11 +126,7 @@
                 </div>
             </div>
         </header>
-
-        <!-- ===== SINGLE PAGE CONTENT ===== -->
         <div class="single-page" id="singlePage">
-
-            <!-- Hero -->
             <section class="home-hero" id="hero">
                 <div class="hero-tag">Навчальний портал</div>
                 <h1 class="hero-title"><span class="accent">Skill-Hub</span></h1>
@@ -158,9 +136,27 @@
                     <div class="stat-item"><span class="stat-num">12</span><span class="stat-lbl">розділи</span></div>
                     <div class="stat-item"><span class="stat-num">32</span><span class="stat-lbl">питань</span></div>
                 </div>
+                <div class="mobile-hero-img" onclick="openModal('photo_2026-03-19_16-36-39.jpg')">
+                    <img src="photo_2026-03-19_16-36-39.jpg" alt="Skill-Hub Mobile Hero">
+                </div>
+                <div class="hero-social">
+                    <a href="https://t.me/Kharkiv_lyceum157" target="_blank" rel="noopener noreferrer" class="social-btn social-btn--tg" aria-label="Telegram канал">
+                        <svg class="social-btn__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.24-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.203-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z" fill="currentColor"/>
+                        </svg>
+                        <span class="social-btn__label">Telegram</span>
+                    </a>
+                    <a href="https://www.instagram.com/kharkiv_lyceum157?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="social-btn social-btn--ig" aria-label="Instagram сторінка">
+                        <svg class="social-btn__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" fill="currentColor"/>
+                        </svg>
+                        <span class="social-btn__label">Instagram</span>
+                    </a>
+                </div>
+                <div class="hero-decor" onclick="openModal('photo_2026-03-19_16-36-39.jpg')">
+                    <img src="photo_2026-03-19_16-36-39.jpg" alt="Skill-Hub Decor">
+                </div>
             </section>
-
-            <!-- ===== SECTION: ФейкоДракончик ===== -->
             <section class="content-section" id="section-fakedragon">
                 <div class="section-header">
                     <span class="section-icon">🐲</span>
@@ -169,67 +165,49 @@
                         <h2 class="section-title">ФейкоДракончик</h2>
                     </div>
                 </div>
-
                 <div class="leaves-container">
                     <div class="leaf-block" id="leaf-fakedragon-0">
                         <h3 class="leaf-block-title">Що таке фейк?</h3>
                         <div class="leaf-block-content">
-                            <p><strong>Фейк</strong> (англ. fake — підробка) — це навмисно створена неправдива
-                                інформація, яка подається як справжня новина. На відміну від помилки журналіста, фейк
-                                завжди має <strong>мету</strong>: обманути, залякати, посіяти паніку або змінити
-                                ставлення до певної події.</p>
-                            <div class="callout">Головна зброя фейку — твої емоції. Якщо новина викликає у тебе гнів,
-                                сильний страх або ейфорію — зупинись і перевір її.</div>
+                            <p><strong>Фейк</strong> (англ. fake — підробка) — це навмисно створена неправдива інформація, яка подається як справжня новина. На відміну від помилки журналіста, фейк завжди має <strong>мету</strong>: обманути, залякати, посіяти паніку або змінити ставлення до певної події.</p>
+                            <div class="callout">Головна зброя фейку — твої емоції. Якщо новина викликає у тебе гнів, сильний страх або ейфорію — зупинись і перевір її.</div>
                             <h3>Чому фейки так швидко поширюються?</h3>
                             <ul>
                                 <li>Вони <strong>прості</strong> і дають легкі відповіді на складні питання.</li>
                                 <li>Вони використовують <strong>емоції</strong> (клікбейтні заголовки).</li>
-                                <li>Ми схильні вірити тому, що підтверджує нашу точку зору (когнітивне упередження).
-                                </li>
+                                <li>Ми схильні вірити тому, що підтверджує нашу точку зору (когнітивне упередження).</li>
                             </ul>
                         </div>
                     </div>
-
                     <div class="leaf-block" id="leaf-fakedragon-1">
                         <h3 class="leaf-block-title">Як перевірити джерело</h3>
                         <div class="leaf-block-content">
                             <p>Перед тим як поширити пост або повірити новині, зроби три кроки перевірки:</p>
                             <ol>
-                                <li><strong>Хто автор?</strong> Перевір профіль у соцмережі або сайт. Якщо сайт
-                                    називається "Super-News-24" і не має розділу "Про нас" — це підозріло.</li>
-                                <li><strong>Першоджерело.</strong> Звідки взяли інформацію? Якщо посилаються на "кума
-                                    знайомого депутата" — це не джерело. Шукай посилання на офіційні органи або великі
-                                    міжнародні агенції (Reuters, BBC тощо).</li>
-                                <li><strong>Дата.</strong> Фейкороби часто використовують старі відео або фото, видаючи
-                                    їх за сьогоднішні події.</li>
+                                <li><strong>Хто автор?</strong> Перевір профіль у соцмережі або сайт. Якщо сайт називається "Super-News-24" і не має розділу "Про нас" — це підозріло.</li>
+                                <li><strong>Першоджерело.</strong> Звідки взяли інформацію? Якщо посилаються на "кума знайомого депутата" — це не джерело. Шукай посилання на офіційні органи або великі міжнародні агенції (Reuters, BBC тощо).</li>
+                                <li><strong>Дата.</strong> Фейкороби часто використовують старі відео або фото, видаючи їх за сьогоднішні події.</li>
                             </ol>
                             <div class="example-box">
                                 <div class="ex-label">Лайфхак</div>
-                                <p>Використовуй <strong>зворотний пошук зображень</strong> у Google. Це допоможе
-                                    дізнатися, коли насправді було зроблено фото.</p>
+                                <p>Використовуй <strong>зворотний пошук зображень</strong> у Google. Це допоможе дізнатися, коли насправді було зроблено фото.</p>
                             </div>
                         </div>
                     </div>
-
                     <div class="leaf-block" id="leaf-fakedragon-2">
                         <h3 class="leaf-block-title">Deepfake та маніпуляції</h3>
                         <div class="leaf-block-content">
-                            <p>Технології не стоять на місці. Сьогодні за допомогою штучного інтелекту можна створити
-                                відео, де відома людина каже те, чого ніколи не говорила. Це і є <strong>Діпфейк
-                                    (Deepfake)</strong>.</p>
+                            <p>Технології не стоять на місці. Сьогодні за допомогою штучного інтелекту можна створити відео, де відома людина каже те, чого ніколи не говорила. Це і є <strong>Діпфейк (Deepfake)</strong>.</p>
                             <h3>Ознаки діпфейку:</h3>
                             <ul>
                                 <li>Дивне кліпання очима (або його відсутність).</li>
                                 <li>Незбіг рухів губ із промовою.</li>
                                 <li>"Мильне" зображення навколо обличчя.</li>
                             </ul>
-                            <p>Пам'ятай: навіть відео сьогодні не є 100% доказом. Завжди шукай інший підтверджений
-                                ракурс або офіційний коментар.</p>
+                            <p>Пам'ятай: навіть відео сьогодні не є 100% доказом. Завжди шукай інший підтверджений ракурс або офіційний коментар.</p>
                         </div>
                     </div>
                 </div>
-
-                <!-- Quiz block -->
                 <div class="quiz-block" id="quiz-fakedragon">
                     <div class="quiz-block-header">
                         <span class="quiz-block-icon">🎯</span>
@@ -237,14 +215,11 @@
                             <div class="quiz-block-label">Тести</div>
                             <div class="quiz-block-title">ФейкоДракончик</div>
                         </div>
-                        <button class="quiz-start-btn" id="start-btn-fakedragon" onclick="initQuiz('fakedragon')">Почати
-                            тест →</button>
+                        <button class="quiz-start-btn" id="start-btn-fakedragon" onclick="initQuiz('fakedragon')">Почати тест →</button>
                     </div>
                     <div class="quiz-inline-area hidden" id="quiz-area-fakedragon"></div>
                 </div>
             </section>
-
-            <!-- ===== SECTION: Критичне мислення ===== -->
             <section class="content-section" id="section-critical">
                 <div class="section-header">
                     <span class="section-icon">🧠</span>
@@ -253,25 +228,19 @@
                         <h2 class="section-title">Критичне мислення</h2>
                     </div>
                 </div>
-
                 <div class="leaves-container">
                     <div class="leaf-block" id="leaf-critical-0">
                         <h3 class="leaf-block-title">Когнітивні упередження</h3>
                         <div class="leaf-block-content">
-                            <p>Наш мозок любить спрощувати світ. <strong>Когнітивні упередження</strong> — це ментальні
-                                пастки, які заважають нам думати об'єктивно.</p>
-                            <div class="callout">Найвідоміше — "упередження підтвердження". Ми шукаємо факти, які
-                                доводять нашу правоту, і ігноруємо все інше.</div>
-                            <p>Цей ефект активно використовується у пропаганді, рекламі та маніпуляціях. Знати про нього
-                                — вже половина захисту.</p>
+                            <p>Наш мозок любить спрощувати світ. <strong>Когнітивні упередження</strong> — це ментальні пастки, які заважають нам думати об'єктивно.</p>
+                            <div class="callout">Найвідоміше — "упередження підтвердження". Ми шукаємо факти, які доводять нашу правоту, і ігноруємо все інше.</div>
+                            <p>Цей ефект активно використовується у пропаганді, рекламі та маніпуляціях. Знати про нього — вже половина захисту.</p>
                         </div>
                     </div>
-
                     <div class="leaf-block" id="leaf-critical-1">
                         <h3 class="leaf-block-title">Логічні хиби</h3>
                         <div class="leaf-block-content">
-                            <p>Хибна аргументація часто використовується в суперечках. Наприклад, <strong>апеляція до
-                                    авторитету</strong> або <strong>солом'яне опудало</strong>.</p>
+                            <p>Хибна аргументація часто використовується в суперечках. Наприклад, <strong>апеляція до авторитету</strong> або <strong>солом'яне опудало</strong>.</p>
                             <ul>
                                 <li><strong>Ad Hominem</strong> — атака на людину замість аргументу.</li>
                                 <li><strong>Strawman</strong> — спрощення позиції опонента до абсурду.</li>
@@ -279,20 +248,17 @@
                             </ul>
                         </div>
                     </div>
-
                     <div class="leaf-block" id="leaf-critical-2">
                         <h3 class="leaf-block-title">Аналіз аргументів</h3>
                         <div class="leaf-block-content">
                             <p>Як перевірити, чи аргумент сильний? Розділи його на тезу, докази та висновок.</p>
                             <div class="example-box">
                                 <div class="ex-label">Структура сильного аргументу</div>
-                                <p><strong>Теза → Доказ → Висновок.</strong> Якщо будь-яка ланка відсутня або хибна —
-                                    аргумент слабкий.</p>
+                                <p><strong>Теза → Доказ → Висновок.</strong> Якщо будь-яка ланка відсутня або хибна — аргумент слабкий.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="quiz-block" id="quiz-critical">
                     <div class="quiz-block-header">
                         <span class="quiz-block-icon">🎯</span>
@@ -300,14 +266,11 @@
                             <div class="quiz-block-label">Тести</div>
                             <div class="quiz-block-title">Критичне мислення</div>
                         </div>
-                        <button class="quiz-start-btn" id="start-btn-critical" onclick="initQuiz('critical')">Почати
-                            тест →</button>
+                        <button class="quiz-start-btn" id="start-btn-critical" onclick="initQuiz('critical')">Почати тест →</button>
                     </div>
                     <div class="quiz-inline-area hidden" id="quiz-area-critical"></div>
                 </div>
             </section>
-
-            <!-- ===== SECTION: Цифрова безпека ===== -->
             <section class="content-section" id="section-security">
                 <div class="section-header">
                     <span class="section-icon">🔒</span>
@@ -316,7 +279,6 @@
                         <h2 class="section-title">Цифрова безпека</h2>
                     </div>
                 </div>
-
                 <div class="leaves-container">
                     <div class="leaf-block" id="leaf-security-0">
                         <h3 class="leaf-block-title">Паролі та акаунти</h3>
@@ -329,22 +291,18 @@
                             </ul>
                         </div>
                     </div>
-
                     <div class="leaf-block" id="leaf-security-1">
                         <h3 class="leaf-block-title">Фішинг та скам</h3>
                         <div class="leaf-block-content">
-                            <p><strong>Фішинг</strong> — це спроба виманити твої дані через підробні сайти або листи.
-                            </p>
+                            <p><strong>Фішинг</strong> — це спроба виманити твої дані через підробні сайти або листи.</p>
                             <div class="callout">Банки ніколи не просять твій пароль. Якщо просять — це шахраї.</div>
                             <p>Перевіряй адресу сайту, шукай замок (https) у рядку браузера.</p>
                         </div>
                     </div>
-
                     <div class="leaf-block" id="leaf-security-2">
                         <h3 class="leaf-block-title">Приватність у мережі</h3>
                         <div class="leaf-block-content">
-                            <p>Те, що потрапило в інтернет — залишається там назавжди. Налаштуй приватність у
-                                соцмережах.</p>
+                            <p>Те, що потрапило в інтернет — залишається там назавжди. Налаштуй приватність у соцмережах.</p>
                             <ul>
                                 <li>Не публікуй паспортні дані та місцезнаходження.</li>
                                 <li>Остережись відкритих Wi-Fi мереж для важливих операцій.</li>
@@ -353,7 +311,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="quiz-block" id="quiz-security">
                     <div class="quiz-block-header">
                         <span class="quiz-block-icon">🎯</span>
@@ -361,14 +318,11 @@
                             <div class="quiz-block-label">Тести</div>
                             <div class="quiz-block-title">Цифрова безпека</div>
                         </div>
-                        <button class="quiz-start-btn" id="start-btn-security" onclick="initQuiz('security')">Почати
-                            тест →</button>
+                        <button class="quiz-start-btn" id="start-btn-security" onclick="initQuiz('security')">Почати тест →</button>
                     </div>
                     <div class="quiz-inline-area hidden" id="quiz-area-security"></div>
                 </div>
             </section>
-
-            <!-- ===== SECTION: Соціальні мережі ===== -->
             <section class="content-section" id="section-social">
                 <div class="section-header">
                     <span class="section-icon">📱</span>
@@ -377,18 +331,14 @@
                         <h2 class="section-title">Соціальні мережі</h2>
                     </div>
                 </div>
-
                 <div class="leaves-container">
                     <div class="leaf-block" id="leaf-social-0">
                         <h3 class="leaf-block-title">Алгоритми та бульбашки</h3>
                         <div class="leaf-block-content">
-                            <p>Соцмережі показують нам те, що нам подобається. Так виникає <strong>інформаційна
-                                    бульбашка</strong>.</p>
-                            <div class="callout">Ти перестаєш бачити альтернативні думки — світ здається однобоким.
-                            </div>
+                            <p>Соцмережі показують нам те, що нам подобається. Так виникає <strong>інформаційна бульбашка</strong>.</p>
+                            <div class="callout">Ти перестаєш бачити альтернативні думки — світ здається однобоким.</div>
                         </div>
                     </div>
-
                     <div class="leaf-block" id="leaf-social-1">
                         <h3 class="leaf-block-title">Маніпуляції в мережах</h3>
                         <div class="leaf-block-content">
@@ -400,20 +350,17 @@
                             </ul>
                         </div>
                     </div>
-
                     <div class="leaf-block" id="leaf-social-2">
                         <h3 class="leaf-block-title">Захист репутації</h3>
                         <div class="leaf-block-content">
                             <p>Твій цифровий слід впливає на майбутню роботу та навчання.</p>
                             <div class="example-box">
                                 <div class="ex-label">Пам'ятай</div>
-                                <p>Все, що ти лайкав, писав або постив — формує твій цифровий портрет. Думай перед
-                                    публікацією.</p>
+                                <p>Все, що ти лайкав, писав або постив — формує твій цифровий портрет. Думай перед публікацією.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="quiz-block" id="quiz-social">
                     <div class="quiz-block-header">
                         <span class="quiz-block-icon">🎯</span>
@@ -421,14 +368,11 @@
                             <div class="quiz-block-label">Тести</div>
                             <div class="quiz-block-title">Соціальні мережі</div>
                         </div>
-                        <button class="quiz-start-btn" id="start-btn-social" onclick="initQuiz('social')">Почати тест
-                            →</button>
+                        <button class="quiz-start-btn" id="start-btn-social" onclick="initQuiz('social')">Почати тест →</button>
                     </div>
                     <div class="quiz-inline-area hidden" id="quiz-area-social"></div>
                 </div>
             </section>
-
-            <!-- ===== SECTION: Гайди ===== -->
             <section class="content-section" id="section-guides">
                 <div class="section-header">
                     <span class="section-icon">📘</span>
@@ -437,15 +381,15 @@
                         <h2 class="section-title">Гайди</h2>
                     </div>
                 </div>
-
                 <div class="leaves-container">
                     <div class="leaf-block" id="leaf-guides-0">
                         <h3 class="leaf-block-title">Skill-HUB</h3>
                         <div class="leaf-block-content">
+                            <div class="guide-decor" onclick="openModal('photo_2026-03-19_16-36-39.jpg')">
+                                <img src="photo_2026-03-19_16-36-39.jpg" alt="Skill-HUB">
+                            </div>
                             <p><strong>«Kharkiv Skills Hub»</strong> — це інноваційна модель перетворення навчального простору на відкритий центр компетенцій громади. Проєкт поєднує можливості «Пунктів незламності» з активним молодіжним волонтерством.</p>
-                            
                             <div class="callout"><strong>Основна ідея:</strong> На базі навчального закладу створюється простір, де підготовлена молодь стає тьюторами для дорослих. Вони допомагають пенсіонерам, ВПО та ветеранам опановувати цифрові сервіси, правила енергобезпеки та навички першої допомоги.</div>
-
                             <h3>Які проблеми вирішує проєкт?</h3>
                             <ul>
                                 <li><strong>Соціальна стійкість:</strong> Зменшення цифрового розриву між поколіннями в умовах війни.</li>
@@ -453,57 +397,54 @@
                                 <li><strong>Цифровий продукт:</strong> Створення онлайн-платформи з навчальними курсами та гайдами.</li>
                                 <li><strong>Розвиток молоді:</strong> Формування активної громадянської позиції та лідерських якостей у молоді.</li>
                             </ul>
-
                             <div class="example-box">
                                 <div class="ex-label">10 Напрямків</div>
                                 <p>Цифрова та побутова допомога, Освітній «Пункт незламності», Взаємодія поколінь, Простір соціальної підтримки, Сертифіковане молодіжне волонтерство, Допомога ветеранам і ВПО, Енергетична та мінна безпека, Цифрова платформа знань, Соціальна адаптація молоді, Практичні життєві навички.</p>
                             </div>
                         </div>
                     </div>
-
                     <div class="leaf-block" id="leaf-guides-1">
                         <h3 class="leaf-block-title">Реєстрація в «Helsi»</h3>
                         <div class="leaf-block-content">
+                            <div class="guide-decor" onclick="openModal('photo_2026-03-19_16-36-49.jpg')">
+                                <img src="photo_2026-03-19_16-36-49.jpg" alt="Реєстрація в Helsi">
+                            </div>
                             <h3>1. Завантаження застосунку</h3>
                             <ul>
                                 <li>Для <strong>Android</strong>: Відкрийте Google Play Market.</li>
                                 <li>Для <strong>iPhone</strong>: Відкрийте App Store.</li>
                                 <li>Введіть у пошуку «Helsi» та натисніть «Встановити».</li>
                             </ul>
-                            
                             <div class="callout">Використовуйте лише <strong>офіційні магазини застосунків</strong> для захисту персональних даних.</div>
-
                             <h3>2. Вхід та авторизація за номером</h3>
                             <ul>
                                 <li>Відкрийте встановлений застосунок на смартфоні і натисніть кнопку «Увійти» або «Реєстрація».</li>
                                 <li>Введіть свій дійсний номер мобільного телефону.</li>
                                 <li>Отримайте SMS-код або push-повідомлення та введіть цифри у відповідне поле для підтвердження.</li>
                             </ul>
-
                             <h3>3. Заповнення особистих даних</h3>
                             <ul>
                                 <li>Введіть своє прізвище, ім’я та по батькові (дані мають збігатися з паспортними для коректного відображення медичної карти).</li>
                                 <li>Підтвердьте згоду на обробку персональних даних. Це необхідно для зв'язку профілю з державною системою охорони здоров'я.</li>
                             </ul>
-
                             <h3>4. Налаштування профілю та безпеки</h3>
                             <ul>
                                 <li>За наявності технічної можливості смартфона активуйте вхід за відбитком пальця або FaceID. Це пришвидшить доступ до медичних даних.</li>
                                 <li>Надайте дозволи на надсилання сповіщень, щоб вчасно отримувати нагадування про записи до лікарів.</li>
                             </ul>
-
                             <div class="example-box">
                                 <div class="ex-label">Що є в Helsi?</div>
                                 <p>Пошук лікарів, онлайн-запис на прийом, перегляд електронних рецептів, направлень та результатів аналізів, а також можливість керувати записами дітей або родичів.</p>
                             </div>
                         </div>
                     </div>
-
                     <div class="leaf-block" id="leaf-guides-2">
                         <h3 class="leaf-block-title">Програма «єОселя»</h3>
                         <div class="leaf-block-content">
+                            <div class="guide-decor" onclick="openModal('photo_2026-03-19_16-36-41.jpg')">
+                                <img src="photo_2026-03-19_16-36-41.jpg" alt="Програма єОселя">
+                            </div>
                             <p>Державна програма іпотечного кредитування житла доступна для <strong>військових, медиків, педагогів, ВПО та молоді без власного житла</strong>.</p>
-                            
                             <h3>Послідовний гайд</h3>
                             <ul>
                                 <li><strong>Крок 1. Подання заявки.</strong> Зайдіть у Дію, авторизуйтеся, виберіть послугу «єОселя» та заповніть анкету.</li>
@@ -511,38 +452,38 @@
                                 <li><strong>Крок 3. Пошук.</strong> Знайдіть та підберіть підходяще вам житло.</li>
                                 <li><strong>Крок 4. Іпотека.</strong> Оформіть іпотеку безпосередньо у відділенні банку.</li>
                             </ul>
-                            
                             <div class="example-box">
                                 <div class="ex-label">Офіційні джерела інформації</div>
                                 <p>Сайт <strong>єОселя</strong>, <strong>Ощадбанк</strong>, <strong>ПриватБанк</strong>.</p>
                             </div>
                         </div>
                     </div>
-
                     <div class="leaf-block" id="leaf-guides-3">
                         <h3 class="leaf-block-title">Виплати для ВПО</h3>
                         <div class="leaf-block-content">
+                            <div class="guide-decor" onclick="openModal('photo_2026-03-19_16-36-47.jpg')">
+                                <img src="photo_2026-03-19_16-36-47.jpg" alt="Виплати для ВПО">
+                            </div>
                             <h3>Послідовний гайд отримання виплат</h3>
                             <ol>
                                 <li><strong>Отримати статус ВПО.</strong> Подати заяву на отримання статусу через застосунок Дія або звернутися офлайн до найближчого ЦНАП/органу соцзахисту.</li>
                                 <li><strong>Подати заяву на грошову допомогу.</strong> Також можна зробити через Дію (розділ <em>«Послуги» → «Допомога ВПО»</em>) або особисто в управлінні соцзахисту.</li>
                                 <li><strong>Вказати реквізити.</strong> Вам знадобиться ваш IBAN банківської картки та особисті дані.</li>
                             </ol>
-                            
                             <div class="callout">Кошти зазвичай надходять щомісячно на вказану банківську карту.</div>
-                            
                             <div class="example-box">
                                 <div class="ex-label">Офіційні джерела інформації</div>
                                 <p>Кабінет Міністрів України, Міністерство соціальної політики України, Портал Дія.</p>
                             </div>
                         </div>
                     </div>
-
                     <div class="leaf-block" id="leaf-guides-4">
                         <h3 class="leaf-block-title">Карта аптек України (Tabletki.ua)</h3>
                         <div class="leaf-block-content">
+                            <div class="guide-decor" onclick="openModal('photo_2026-03-19_16-36-44.jpg')">
+                                <img src="photo_2026-03-19_16-36-44.jpg" alt="Tabletki.ua">
+                            </div>
                             <p>Сервіс <strong>Tabletki.ua</strong> допомагає знайти ліки у найближчих аптеках з актуальними цінами.</p>
-                            
                             <h3>Як шукати ліки?</h3>
                             <ol>
                                 <li>Відкрийте <strong>сайт</strong> або завантажте <strong>додаток</strong>.</li>
@@ -553,10 +494,12 @@
                             </ol>
                         </div>
                     </div>
-
                     <div class="leaf-block" id="leaf-guides-5">
                         <h3 class="leaf-block-title">Пам'ятка з мінної безпеки</h3>
                         <div class="leaf-block-content">
+                            <div class="guide-decor" onclick="openModal('photo_2026-03-19_16-36-34.jpg')">
+                                <img src="photo_2026-03-19_16-36-34.jpg" alt="Мінна безпека">
+                            </div>
                             <h3>Де існує небезпека:</h3>
                             <ul>
                                 <li>Ліси, поля, посадки, узбіччя доріг.</li>
@@ -564,9 +507,7 @@
                                 <li>Дитячі майданчики, водойми (особливо на деокупованих територіях).</li>
                                 <li>Невідомі предмети після обстрілів.</li>
                             </ul>
-
                             <hr style="border: none; border-top: 1px solid var(--border); margin: 24px 0;">
-
                             <h3>Якщо побачили підозрілий предмет:</h3>
                             <div style="display: flex; gap: 20px; flex-wrap: wrap;">
                                 <div style="flex: 1; min-width: 200px;">
@@ -590,7 +531,6 @@
                                     </ul>
                                 </div>
                             </div>
-                            
                             <div class="callout">
                                 <strong>Правило трьох «НЕ»:</strong>
                                 <ul style="margin-bottom: 0; margin-top: 6px;">
@@ -601,10 +541,12 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="leaf-block" id="leaf-guides-6">
                         <h3 class="leaf-block-title">Перша домедична допомога</h3>
                         <div class="leaf-block-content">
+                            <div class="guide-decor" onclick="openModal('photo_2026-03-19_16-36-27.jpg')">
+                                <img src="photo_2026-03-19_16-36-27.jpg" alt="Домедична допомога">
+                            </div>
                             <ol>
                                 <li><strong>Переконайся у власній безпеці</strong>
                                     <ul>
@@ -643,10 +585,12 @@
                             </ol>
                         </div>
                     </div>
-
                     <div class="leaf-block" id="leaf-guides-7">
                         <h3 class="leaf-block-title">Пам'ятка з військової безпеки</h3>
                         <div class="leaf-block-content">
+                            <div class="guide-decor" onclick="openModal('photo_2026-03-19_16-36-37.jpg')">
+                                <img src="photo_2026-03-19_16-36-37.jpg" alt="Військова безпека">
+                            </div>
                             <h3>Під час повітряної тривоги</h3>
                             <ul>
                                 <li>Негайно пройти в укриття.</li>
@@ -654,7 +598,6 @@
                                 <li>Не користуватися ліфтом.</li>
                                 <li>Не залишатися біля вікон.</li>
                             </ul>
-
                             <h3>Інформаційна безпека:</h3>
                             <ul>
                                 <li>Не публікувати фото/відео прильотів.</li>
@@ -662,7 +605,6 @@
                                 <li>Не поширювати неперевірену інформацію.</li>
                                 <li>Довіряти лише офіційним джерелам.</li>
                             </ul>
-
                             <div class="example-box">
                                 <div class="ex-label">Вдома:</div>
                                 <ul>
@@ -675,11 +617,12 @@
                     </div>
                 </div>
             </section>
-
-        </div><!-- /single-page -->
-    </div><!-- /main-wrap -->
-
+        </div>
+    </div>
+    <div id="imageModal" class="image-modal" onclick="closeModal()">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
     <script src="script.js"></script>
 </body>
-
 </html>
