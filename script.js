@@ -286,7 +286,7 @@ function scrollToQuiz(branchId) {
     if (window.innerWidth <= 840) sidebar.classList.remove('open');
 }
 function setupScrollSpy() {
-    const sections = ['fakedragon', 'critical', 'security', 'social', 'guides'];
+    const sections = ['fakedragon', 'critical', 'security', 'social', 'guides', 'contact'];
     sections.forEach(id => {
         const el = document.getElementById(`section-${id}`);
         if (!el) return;
@@ -492,3 +492,100 @@ function closeModal() {
     const modal = document.getElementById('imageModal');
     modal.classList.remove('show');
 }
+
+window.setContactType = function(type) {
+    const btnTg = document.getElementById('btnTg');
+    const btnPhone = document.getElementById('btnPhone');
+    const prefix = document.getElementById('contactPrefix');
+    const input = document.getElementById('tgContact');
+
+    if (type === 'telegram') {
+        btnTg.classList.add('active');
+        btnPhone.classList.remove('active');
+        prefix.textContent = '@';
+        input.style.paddingLeft = '34px';
+        input.placeholder = 'username';
+        input.type = 'text';
+        input.pattern = '[A-Za-z0-9_]{5,32}';
+        input.title = 'Telegram юзернейм від 5 до 32 символів (без @)';
+    } else {
+        btnTg.classList.remove('active');
+        btnPhone.classList.add('active');
+        prefix.textContent = '+380';
+        input.style.paddingLeft = '58px';
+        input.placeholder = '50 123 4567';
+        input.type = 'tel';
+        input.pattern = '[0-9\\s\\-]{9,15}';
+        input.title = 'Введіть 9 цифр номера після +380';
+    }
+    input.value = '';
+    input.focus();
+};
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const tgForm = document.getElementById('tgContactForm');
+    if (tgForm) {
+        tgForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('tgSubmitBtn');
+            const statusBox = document.getElementById('tgFormStatus');
+            const name = document.getElementById('tgName').value.trim();
+            const message = document.getElementById('tgMessage').value.trim();
+            
+            let contactVal = document.getElementById('tgContact').value.trim();
+            const isTelegram = document.getElementById('btnTg').classList.contains('active');
+            let contactPrefix = document.getElementById('contactPrefix').textContent;
+            
+            if (isTelegram && contactVal.startsWith('@')) {
+                contactVal = contactVal.substring(1);
+            } else if (!isTelegram) {
+                contactVal = contactVal.replace(/[^0-9]/g, '');
+            }
+
+            const fullContact = contactPrefix + contactVal;
+            const contactTypeLabel = isTelegram ? 'Telegram' : 'Телефон';
+
+            if (!name || !message || !contactVal) return;
+
+            btn.disabled = true;
+            btn.textContent = "Відправка...";
+            statusBox.textContent = "";
+            statusBox.className = "form-status";
+
+            const botToken = '8234761878:AAG_yjcY2d-I_dGnsMaZszOMPhG2ucFbr0g';
+            const chatId = '1381148589';
+            
+            const text = `🔥 Нове звернення з сайту!\n\n👤 Ім'я: <b>${name}</b>\n📞 Зв'язок: ${contactTypeLabel} (<b>${fullContact}</b>)\n💬 Повідомлення:\n${message}`;
+
+            try {
+                const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: text,
+                        parse_mode: "HTML"
+                    })
+                });
+
+                if (response.ok) {
+                    statusBox.textContent = "Сообщение успешно отправлено! ✅";
+                    statusBox.classList.add('success');
+                    tgForm.reset();
+                } else {
+                    statusBox.textContent = "Помилка при відправці! ❌";
+                    statusBox.classList.add('error');
+                }
+            } catch (err) {
+                console.error(err);
+                statusBox.textContent = "Помилка зв'язку ❌";
+                statusBox.classList.add('error');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = "Відправити 🚀";
+            }
+        });
+    }
+});
